@@ -1,3 +1,10 @@
+import React from 'react';
+import CountdownTimer from '@/components/CountdownTimer';
+
 export default function Home() {
-  return <div>hello world</div>;
+  return (
+    <div>
+      <CountdownTimer />
+    </div>
+  );
 }
