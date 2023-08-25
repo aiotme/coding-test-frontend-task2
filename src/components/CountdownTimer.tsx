@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 interface CountdownTimerProps {
   initialDatetime?: Date;
 }
 
 const CountdownTimer: React.FC<CountdownTimerProps> = ({ initialDatetime }) => {
-  initialDatetime?initialDatetime:initialDatetime = new Date();
+  initialDatetime ??= new Date();
   const [datetime, setDatetime] = useState(initialDatetime);
   const [timeLeft, setTimeLeft] = useState(getTimeLeft(initialDatetime));
   const [isRunning, setIsRunning] = useState(false);
@@ -46,11 +46,20 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({ initialDatetime }) => {
       </div>
       <div>
         <label htmlFor="datetime-input">Countdown end time:</label>
-        <input type="datetime-local" id="datetime-input" value={datetime.toISOString().slice(0, -8)} onChange={handleDatetimeChange} />
+        <input
+          type="datetime-local"
+          id="datetime-input"
+          value={datetime.toISOString().slice(0, -8)}
+          onChange={handleDatetimeChange}
+        />
       </div>
       <div>
-        {!isRunning && <button onClick={handleStartClick}>Click To Start Countdown</button>}
-        {isRunning && <button onClick={handleStopClick}>Click To Stop Countdown</button>}
+        {!isRunning && (
+          <button onClick={handleStartClick}>Click To Start Countdown</button>
+        )}
+        {isRunning && (
+          <button onClick={handleStopClick}>Click To Stop Countdown</button>
+        )}
       </div>
     </div>
   );
